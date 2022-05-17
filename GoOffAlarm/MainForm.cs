@@ -8,6 +8,7 @@ namespace GoOffAlarm
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Media;
     using System.Windows.Forms;
 
     /// <summary>
@@ -15,6 +16,11 @@ namespace GoOffAlarm
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// The sound player.
+        /// </summary>
+        private SoundPlayer soundPlayer = null;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:GoOffAlarm.MainForm"/> class.
         /// </summary>
@@ -102,6 +108,32 @@ namespace GoOffAlarm
         private void OnStartStopButtonClick(object sender, EventArgs e)
         {
             // TODO Add code
+        }
+
+        /// <summary>
+        /// Plays the passed sound file.
+        /// </summary>
+        /// <param name="filePath">File path.</param>
+        private void PlaySoundFile(string filePath)
+        {
+            // Check for previous player
+            if (this.soundPlayer != null)
+            {
+                // Stop it
+                this.soundPlayer.Stop();
+
+                // Dispose of it
+                this.soundPlayer.Dispose();
+
+                // Reset instance variable
+                this.soundPlayer = null;
+            }
+
+            // Set instance player afresh
+            this.soundPlayer = new SoundPlayer(filePath);
+
+            // Play the passed file
+            this.soundPlayer.Play();
         }
 
         /// <summary>
