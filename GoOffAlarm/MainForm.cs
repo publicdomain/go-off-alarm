@@ -145,6 +145,43 @@ namespace GoOffAlarm
         }
 
         /// <summary>
+        /// Handles the main form load.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnMainFormLoad(object sender, EventArgs e)
+        {
+            // TODO Add code
+        }
+
+        /// <summary>
+        /// Handles the main form form closing.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnMainFormFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // TODO Add code
+        }
+
+        /// <summary>
+        /// Loads the settings data.
+        /// </summary>
+        /// <returns>The settings data.</returns>
+        private SettingsData LoadSettingsData()
+        {
+            // Use file stream
+            using (FileStream fileStream = File.OpenRead("SettingsData.txt"))
+            {
+                // Set xml serialzer
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SettingsData));
+
+                // Return populated settings data
+                return xmlSerializer.Deserialize(fileStream) as SettingsData;
+            }
+        }
+
+        /// <summary>
         /// Saves the settings data.
         /// </summary>
         private void SaveSettingsData()

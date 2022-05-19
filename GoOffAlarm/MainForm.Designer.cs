@@ -58,6 +58,7 @@ namespace GoOffAlarm
 			this.sourceCodeGithubcomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.mainTableLayoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.mainStatusStrip.SuspendLayout();
@@ -98,7 +99,7 @@ namespace GoOffAlarm
 			this.countLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.countLabel.Location = new System.Drawing.Point(3, 70);
 			this.countLabel.Name = "countLabel";
-			this.countLabel.Size = new System.Drawing.Size(246, 60);
+			this.countLabel.Size = new System.Drawing.Size(246, 56);
 			this.countLabel.TabIndex = 3;
 			this.countLabel.Text = "00:00:00";
 			this.countLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -120,8 +121,8 @@ namespace GoOffAlarm
 			this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-			this.mainTableLayoutPanel.Size = new System.Drawing.Size(252, 170);
+			this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+			this.mainTableLayoutPanel.Size = new System.Drawing.Size(252, 176);
 			this.mainTableLayoutPanel.TabIndex = 57;
 			// 
 			// startStopButton
@@ -130,9 +131,9 @@ namespace GoOffAlarm
 			this.startStopButton.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.startStopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.startStopButton.ForeColor = System.Drawing.Color.DarkGreen;
-			this.startStopButton.Location = new System.Drawing.Point(3, 133);
+			this.startStopButton.Location = new System.Drawing.Point(3, 129);
 			this.startStopButton.Name = "startStopButton";
-			this.startStopButton.Size = new System.Drawing.Size(246, 34);
+			this.startStopButton.Size = new System.Drawing.Size(246, 44);
 			this.startStopButton.TabIndex = 4;
 			this.startStopButton.Text = "&Start";
 			this.startStopButton.UseVisualStyleBackColor = true;
@@ -179,7 +180,7 @@ namespace GoOffAlarm
 			this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.countToolStripStatusLabel,
 									this.countCountToolStripStatusLabel});
-			this.mainStatusStrip.Location = new System.Drawing.Point(0, 194);
+			this.mainStatusStrip.Location = new System.Drawing.Point(0, 200);
 			this.mainStatusStrip.Name = "mainStatusStrip";
 			this.mainStatusStrip.Size = new System.Drawing.Size(252, 22);
 			this.mainStatusStrip.SizingGrip = false;
@@ -325,12 +326,17 @@ namespace GoOffAlarm
 			this.aboutToolStripMenuItem.Text = "&About...";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnAboutToolStripMenuItemClick);
 			// 
+			// openFileDialog
+			// 
+			this.openFileDialog.DefaultExt = "wav";
+			this.openFileDialog.Filter = "WAV files (*.wav)|*.wav|All files (*.*)|*.*";
+			// 
 			// MainForm
 			// 
 			this.AcceptButton = this.startStopButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(252, 216);
+			this.ClientSize = new System.Drawing.Size(252, 222);
 			this.Controls.Add(this.mainTableLayoutPanel);
 			this.Controls.Add(this.mainStatusStrip);
 			this.Controls.Add(this.mainMenuStrip);
@@ -339,6 +345,8 @@ namespace GoOffAlarm
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "GoOffAlarm";
 			this.TopMost = true;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormFormClosing);
+			this.Load += new System.EventHandler(this.OnMainFormLoad);
 			this.mainTableLayoutPanel.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			this.mainStatusStrip.ResumeLayout(false);
@@ -348,6 +356,7 @@ namespace GoOffAlarm
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.OpenFileDialog openFileDialog;
 		private System.Windows.Forms.ToolStripMenuItem setSoundFileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loopSoundToolStripMenuItem;
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
