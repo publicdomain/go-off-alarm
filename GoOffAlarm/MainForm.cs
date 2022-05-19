@@ -165,6 +165,22 @@ namespace GoOffAlarm
         }
 
         /// <summary>
+        /// Saves the settings data.
+        /// </summary>
+        private void SaveSettingsData()
+        {
+            // Use stream writer
+            using (StreamWriter streamWriter = new StreamWriter("SettingsData.txt", false))
+            {
+                // Set xml serialzer
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SettingsData));
+
+                // Serialize settings data
+                xmlSerializer.Serialize(streamWriter, this.settingsData);
+            }
+        }
+
+        /// <summary>
         /// Loads the settings data.
         /// </summary>
         /// <returns>The settings data.</returns>
@@ -178,22 +194,6 @@ namespace GoOffAlarm
 
                 // Return populated settings data
                 return xmlSerializer.Deserialize(fileStream) as SettingsData;
-            }
-        }
-
-        /// <summary>
-        /// Saves the settings data.
-        /// </summary>
-        private void SaveSettingsData()
-        {
-            // Use stream writer
-            using (StreamWriter streamWriter = new StreamWriter("SettingsData.txt", false))
-            {
-                // Set xml serialzer
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SettingsData));
-
-                // Serialize settings data
-                xmlSerializer.Serialize(streamWriter, this.settingsData);
             }
         }
 
