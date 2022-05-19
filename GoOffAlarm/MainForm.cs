@@ -8,8 +8,11 @@ namespace GoOffAlarm
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.IO;
     using System.Media;
     using System.Windows.Forms;
+    using System.Xml.Serialization;
+    using PublicDomain;
 
     /// <summary>
     /// Description of MainForm.
@@ -20,6 +23,11 @@ namespace GoOffAlarm
         /// The sound player.
         /// </summary>
         private SoundPlayer soundPlayer = null;
+
+        /// <summary>
+        /// The settings data.
+        /// </summary>
+        private SettingsData settingsData = new SettingsData();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:GoOffAlarm.MainForm"/> class.
@@ -134,6 +142,22 @@ namespace GoOffAlarm
 
             // Play the passed file
             this.soundPlayer.Play();
+        }
+
+        /// <summary>
+        /// Saves the settings data.
+        /// </summary>
+        private void SaveSettingsData()
+        {
+            // Use stream writer
+            using (StreamWriter streamWriter = new StreamWriter("SettingsData.txt", false))
+            {
+                // Set xml serialzer
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SettingsData));
+
+                // Serialize settings data
+                xmlSerializer.Serialize(streamWriter, this.settingsData);
+            }
         }
 
         /// <summary>
