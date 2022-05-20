@@ -30,6 +30,11 @@ namespace GoOffAlarm
         private SettingsData settingsData = new SettingsData();
 
         /// <summary>
+        /// The settings data path.
+        /// </summary>
+        private string settingsDataPath = $"{Application.ProductName}-SettingsData.txt";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:GoOffAlarm.MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -161,7 +166,8 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnMainFormFormClosing(object sender, FormClosingEventArgs e)
         {
-            // TODO Add code
+            // Save settings data to disk
+            this.SaveSettingsFile(this.settingsDataPath, this.settingsData);
         }
 
         /// <summary>
