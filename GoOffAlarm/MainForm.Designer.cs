@@ -67,7 +67,8 @@ namespace GoOffAlarm
 			// 
 			// activeTimer
 			// 
-			this.activeTimer.Interval = 250;
+			this.activeTimer.Interval = 50;
+			this.activeTimer.Tick += new System.EventHandler(this.OnActiveTimerTick);
 			// 
 			// keyLabel
 			// 

@@ -7,6 +7,7 @@ namespace GoOffAlarm
     // Directives
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing;
     using System.IO;
     using System.Media;
@@ -33,6 +34,16 @@ namespace GoOffAlarm
         /// The settings data path.
         /// </summary>
         private string settingsDataPath = $"{Application.ProductName}-SettingsData.txt";
+
+        /// <summary>
+        /// The stopwatch.
+        /// </summary>
+        Stopwatch stopwatch = new Stopwatch();
+
+        /// <summary>
+        /// The last update stopwatch.
+        /// </summary>
+        Stopwatch lastUpdateStopwatch = new Stopwatch();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:GoOffAlarm.MainForm"/> class.
@@ -120,7 +131,31 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnStartStopButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Check for Star(t) vs Sto(p)
+            if (this.startStopButton.Text.EndsWith("t", StringComparison.InvariantCulture))
+            {
+                // Restart stopwatch
+                this.stopwatch.Restart();
+
+                // Start timer
+                this.activeTimer.Start();
+
+                // Change to stop
+                this.startStopButton.Text = "&Stop";
+                this.startStopButton.ForeColor = Color.Red;
+            }
+            else
+            {
+                // Stop stopwatch
+                this.stopwatch.Stop();
+
+                // Stop timer
+                this.activeTimer.Stop();
+
+                // Reset to start
+                this.startStopButton.Text = "&Start";
+                this.startStopButton.ForeColor = Color.DarkGreen;
+            }
         }
 
         /// <summary>
@@ -228,6 +263,16 @@ namespace GoOffAlarm
                 // Return populated settings data
                 return xmlSerializer.Deserialize(fileStream) as SettingsData;
             }
+        }
+
+        /// <summary>
+        /// Handles the active timer tick.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnActiveTimerTick(object sender, EventArgs e)
+        {
+            // TODO Add code
         }
 
         /// <summary>
