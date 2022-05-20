@@ -35,6 +35,6 @@ namespace PublicDomain
         /// Gets or sets the sound file path.
         /// </summary>
         /// <value>The sound file path.</value>
-        public string SoundFilePath { get; set; } = "pd-alarm-sound.wav";
+        public string SoundFilePath { get; set; } = "Siren_Noise-KevanGC-1337458893.wav";
     }
 }
