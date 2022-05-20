@@ -41,9 +41,9 @@ namespace GoOffAlarm
         Stopwatch stopwatch = new Stopwatch();
 
         /// <summary>
-        /// The last update stopwatch.
+        /// The left time span.
         /// </summary>
-        Stopwatch lastUpdateStopwatch = new Stopwatch();
+        TimeSpan leftTimeSpan;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:GoOffAlarm.MainForm"/> class.
@@ -134,6 +134,9 @@ namespace GoOffAlarm
             // Check for Star(t) vs Sto(p)
             if (this.startStopButton.Text.EndsWith("t", StringComparison.InvariantCulture))
             {
+                // Set timespan from minutes
+                this.leftTimeSpan = TimeSpan.FromMinutes((Double)this.minutesNumericUpDown.Value);
+
                 // Restart stopwatch
                 this.stopwatch.Restart();
 
@@ -272,7 +275,11 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnActiveTimerTick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Show elapsed time
+            this.elapsedLabel.Text = this.stopwatch.Elapsed.ToString(@"hh\:mm\:ss");
+
+            // Show time left
+            this.timeLeftToolStripStatusLabel.Text = this.leftTimeSpan.Subtract(this.stopwatch.Elapsed).ToString(@"hh\:mm\:ss");
         }
 
         /// <summary>

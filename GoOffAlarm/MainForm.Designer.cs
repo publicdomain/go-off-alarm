@@ -32,14 +32,14 @@ namespace GoOffAlarm
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.activeTimer = new System.Windows.Forms.Timer(this.components);
-			this.keyLabel = new System.Windows.Forms.Label();
-			this.countTextLabel = new System.Windows.Forms.Label();
-			this.countLabel = new System.Windows.Forms.Label();
+			this.goOffInLabel = new System.Windows.Forms.Label();
+			this.elapsedTextLabel = new System.Windows.Forms.Label();
+			this.elapsedLabel = new System.Windows.Forms.Label();
 			this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
 			this.startStopButton = new System.Windows.Forms.Button();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-			this.countCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.countToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.minutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.timeLeftToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.timeLeftTextToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
 			this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +60,7 @@ namespace GoOffAlarm
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.mainTableLayoutPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.minutesNumericUpDown)).BeginInit();
 			this.mainStatusStrip.SuspendLayout();
 			this.mainMenuStrip.SuspendLayout();
 			this.SuspendLayout();
@@ -70,51 +70,51 @@ namespace GoOffAlarm
 			this.activeTimer.Interval = 50;
 			this.activeTimer.Tick += new System.EventHandler(this.OnActiveTimerTick);
 			// 
-			// keyLabel
+			// goOffInLabel
 			// 
-			this.keyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.keyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.keyLabel.Location = new System.Drawing.Point(3, 0);
-			this.keyLabel.Name = "keyLabel";
-			this.keyLabel.Size = new System.Drawing.Size(120, 40);
-			this.keyLabel.TabIndex = 0;
-			this.keyLabel.Text = "&Go off in:";
-			this.keyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.goOffInLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.goOffInLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.goOffInLabel.Location = new System.Drawing.Point(3, 0);
+			this.goOffInLabel.Name = "goOffInLabel";
+			this.goOffInLabel.Size = new System.Drawing.Size(120, 40);
+			this.goOffInLabel.TabIndex = 0;
+			this.goOffInLabel.Text = "&Go off in:";
+			this.goOffInLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// countTextLabel
+			// elapsedTextLabel
 			// 
-			this.mainTableLayoutPanel.SetColumnSpan(this.countTextLabel, 2);
-			this.countTextLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.countTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.countTextLabel.Location = new System.Drawing.Point(3, 40);
-			this.countTextLabel.Name = "countTextLabel";
-			this.countTextLabel.Size = new System.Drawing.Size(246, 30);
-			this.countTextLabel.TabIndex = 2;
-			this.countTextLabel.Text = "&Elapsed:";
-			this.countTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.mainTableLayoutPanel.SetColumnSpan(this.elapsedTextLabel, 2);
+			this.elapsedTextLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.elapsedTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.elapsedTextLabel.Location = new System.Drawing.Point(3, 40);
+			this.elapsedTextLabel.Name = "elapsedTextLabel";
+			this.elapsedTextLabel.Size = new System.Drawing.Size(246, 30);
+			this.elapsedTextLabel.TabIndex = 2;
+			this.elapsedTextLabel.Text = "&Elapsed:";
+			this.elapsedTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// countLabel
+			// elapsedLabel
 			// 
-			this.mainTableLayoutPanel.SetColumnSpan(this.countLabel, 2);
-			this.countLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.countLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.countLabel.Location = new System.Drawing.Point(3, 70);
-			this.countLabel.Name = "countLabel";
-			this.countLabel.Size = new System.Drawing.Size(246, 56);
-			this.countLabel.TabIndex = 3;
-			this.countLabel.Text = "00:00:00";
-			this.countLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.mainTableLayoutPanel.SetColumnSpan(this.elapsedLabel, 2);
+			this.elapsedLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.elapsedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.elapsedLabel.Location = new System.Drawing.Point(3, 70);
+			this.elapsedLabel.Name = "elapsedLabel";
+			this.elapsedLabel.Size = new System.Drawing.Size(246, 56);
+			this.elapsedLabel.TabIndex = 3;
+			this.elapsedLabel.Text = "00:00:00";
+			this.elapsedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// mainTableLayoutPanel
 			// 
 			this.mainTableLayoutPanel.ColumnCount = 2;
 			this.mainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.mainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.mainTableLayoutPanel.Controls.Add(this.keyLabel, 0, 0);
-			this.mainTableLayoutPanel.Controls.Add(this.countTextLabel, 0, 1);
-			this.mainTableLayoutPanel.Controls.Add(this.countLabel, 0, 2);
+			this.mainTableLayoutPanel.Controls.Add(this.goOffInLabel, 0, 0);
+			this.mainTableLayoutPanel.Controls.Add(this.elapsedTextLabel, 0, 1);
+			this.mainTableLayoutPanel.Controls.Add(this.elapsedLabel, 0, 2);
 			this.mainTableLayoutPanel.Controls.Add(this.startStopButton, 0, 3);
-			this.mainTableLayoutPanel.Controls.Add(this.numericUpDown1, 1, 0);
+			this.mainTableLayoutPanel.Controls.Add(this.minutesNumericUpDown, 1, 0);
 			this.mainTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainTableLayoutPanel.Location = new System.Drawing.Point(0, 24);
 			this.mainTableLayoutPanel.Name = "mainTableLayoutPanel";
@@ -140,47 +140,47 @@ namespace GoOffAlarm
 			this.startStopButton.UseVisualStyleBackColor = true;
 			this.startStopButton.Click += new System.EventHandler(this.OnStartStopButtonClick);
 			// 
-			// numericUpDown1
+			// minutesNumericUpDown
 			// 
-			this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.numericUpDown1.Location = new System.Drawing.Point(129, 3);
-			this.numericUpDown1.Maximum = new decimal(new int[] {
+			this.minutesNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.minutesNumericUpDown.Location = new System.Drawing.Point(129, 3);
+			this.minutesNumericUpDown.Maximum = new decimal(new int[] {
 									1440,
 									0,
 									0,
 									0});
-			this.numericUpDown1.Minimum = new decimal(new int[] {
+			this.minutesNumericUpDown.Minimum = new decimal(new int[] {
 									1,
 									0,
 									0,
 									0});
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(120, 31);
-			this.numericUpDown1.TabIndex = 5;
-			this.numericUpDown1.Value = new decimal(new int[] {
+			this.minutesNumericUpDown.Name = "minutesNumericUpDown";
+			this.minutesNumericUpDown.Size = new System.Drawing.Size(120, 31);
+			this.minutesNumericUpDown.TabIndex = 5;
+			this.minutesNumericUpDown.Value = new decimal(new int[] {
 									20,
 									0,
 									0,
 									0});
 			// 
-			// countCountToolStripStatusLabel
+			// timeLeftToolStripStatusLabel
 			// 
-			this.countCountToolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-			this.countCountToolStripStatusLabel.Name = "countCountToolStripStatusLabel";
-			this.countCountToolStripStatusLabel.Size = new System.Drawing.Size(55, 17);
-			this.countCountToolStripStatusLabel.Text = "00:00:00";
+			this.timeLeftToolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+			this.timeLeftToolStripStatusLabel.Name = "timeLeftToolStripStatusLabel";
+			this.timeLeftToolStripStatusLabel.Size = new System.Drawing.Size(55, 17);
+			this.timeLeftToolStripStatusLabel.Text = "00:00:00";
 			// 
-			// countToolStripStatusLabel
+			// timeLeftTextToolStripStatusLabel
 			// 
-			this.countToolStripStatusLabel.Name = "countToolStripStatusLabel";
-			this.countToolStripStatusLabel.Size = new System.Drawing.Size(57, 17);
-			this.countToolStripStatusLabel.Text = "Time left:";
+			this.timeLeftTextToolStripStatusLabel.Name = "timeLeftTextToolStripStatusLabel";
+			this.timeLeftTextToolStripStatusLabel.Size = new System.Drawing.Size(57, 17);
+			this.timeLeftTextToolStripStatusLabel.Text = "Time left:";
 			// 
 			// mainStatusStrip
 			// 
 			this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.countToolStripStatusLabel,
-									this.countCountToolStripStatusLabel});
+									this.timeLeftTextToolStripStatusLabel,
+									this.timeLeftToolStripStatusLabel});
 			this.mainStatusStrip.Location = new System.Drawing.Point(0, 200);
 			this.mainStatusStrip.Name = "mainStatusStrip";
 			this.mainStatusStrip.Size = new System.Drawing.Size(252, 22);
@@ -349,7 +349,7 @@ namespace GoOffAlarm
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormFormClosing);
 			this.Load += new System.EventHandler(this.OnMainFormLoad);
 			this.mainTableLayoutPanel.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.minutesNumericUpDown)).EndInit();
 			this.mainStatusStrip.ResumeLayout(false);
 			this.mainStatusStrip.PerformLayout();
 			this.mainMenuStrip.ResumeLayout(false);
@@ -360,7 +360,7 @@ namespace GoOffAlarm
 		private System.Windows.Forms.OpenFileDialog openFileDialog;
 		private System.Windows.Forms.ToolStripMenuItem setSoundFileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loopSoundToolStripMenuItem;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.NumericUpDown minutesNumericUpDown;
 		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -377,13 +377,13 @@ namespace GoOffAlarm
 		private System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem1;
 		private System.Windows.Forms.StatusStrip mainStatusStrip;
-		private System.Windows.Forms.ToolStripStatusLabel countToolStripStatusLabel;
-		private System.Windows.Forms.ToolStripStatusLabel countCountToolStripStatusLabel;
+		private System.Windows.Forms.ToolStripStatusLabel timeLeftTextToolStripStatusLabel;
+		private System.Windows.Forms.ToolStripStatusLabel timeLeftToolStripStatusLabel;
 		private System.Windows.Forms.Button startStopButton;
-		private System.Windows.Forms.Label countLabel;
+		private System.Windows.Forms.Label elapsedLabel;
 		private System.Windows.Forms.TableLayoutPanel mainTableLayoutPanel;
-		private System.Windows.Forms.Label countTextLabel;
-		private System.Windows.Forms.Label keyLabel;
+		private System.Windows.Forms.Label elapsedTextLabel;
+		private System.Windows.Forms.Label goOffInLabel;
 		private System.Windows.Forms.Timer activeTimer;
 	}
 }
