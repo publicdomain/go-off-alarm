@@ -195,7 +195,7 @@ namespace GoOffAlarm
 			this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
 			this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
 			this.optionsToolStripMenuItem1.Text = "&Options";
-			this.optionsToolStripMenuItem1.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.OnOptionsToolStripMenuItem1DropDownItemClicked);
+			this.optionsToolStripMenuItem1.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.OnOptionsToolStripMenuItemDropDownItemClicked);
 			// 
 			// alwaysOnTopToolStripMenuItem
 			// 

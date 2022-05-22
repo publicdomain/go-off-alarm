@@ -83,13 +83,20 @@ namespace GoOffAlarm
         }
 
         /// <summary>
-        /// Handles the options tool strip menu item1 drop down item clicked.
+        /// Handles the options tool strip menu item drop down item clicked.
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        private void OnOptionsToolStripMenuItem1DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void OnOptionsToolStripMenuItemDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            // TODO Add code
+            // Set tool strip menu item
+            ToolStripMenuItem toolStripMenuItem = (ToolStripMenuItem)e.ClickedItem;
+
+            // Toggle checked
+            toolStripMenuItem.Checked = !toolStripMenuItem.Checked;
+
+            // Set topmost by check box
+            this.TopMost = this.alwaysOnTopToolStripMenuItem.Checked;
         }
 
         /// <summary>

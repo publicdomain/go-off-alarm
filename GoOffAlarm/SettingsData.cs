@@ -29,7 +29,17 @@ namespace PublicDomain
         /// <value><c>true</c> if always on top; otherwise, <c>false</c>.</value>
         public bool AlwaysOnTop { get; set; } = false;
 
-        //public bool { get; set; } = false;
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:PublicDomain.SettingsData"/> loop sound.
+        /// </summary>
+        /// <value><c>true</c> if loop sound; otherwise, <c>false</c>.</value>
+        public bool LoopSound { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the minutes.
+        /// </summary>
+        /// <value>The minutes.</value>
+        public int Minutes { get; set; } = 20;
 
         /// <summary>
         /// Gets or sets the sound file path.
