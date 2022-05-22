@@ -61,7 +61,25 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnNewToolStripMenuItemClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Reset the player
+            this.ResetSoundPlayer();
+
+            // Stopwatch
+            this.stopwatch.Stop();
+            this.stopwatch.Reset();
+
+            // Stop timer
+            this.activeTimer.Stop();
+
+            // Reset to start
+            this.startStopButton.Text = "&Start";
+            this.startStopButton.ForeColor = Color.DarkGreen;
+
+            // Reset labels
+            this.ResetLabels();
+
+            // Focus 
+            this.minutesNumericUpDown.Focus();
         }
 
         /// <summary>
