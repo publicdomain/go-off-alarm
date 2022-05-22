@@ -264,6 +264,14 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnMainFormFormClosing(object sender, FormClosingEventArgs e)
         {
+            /* Settings data */
+
+            // ALways on top
+            this.settingsData.AlwaysOnTop = this.alwaysOnTopToolStripMenuItem.Checked;
+
+            // Loop
+            this.settingsData.LoopSound = this.loopSoundToolStripMenuItem.Checked;
+
             // Save settings data to disk
             this.SaveSettingsFile(this.settingsDataPath, this.settingsData);
         }
