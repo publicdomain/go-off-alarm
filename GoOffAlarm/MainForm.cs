@@ -165,7 +165,8 @@ namespace GoOffAlarm
         /// Plays the passed sound file.
         /// </summary>
         /// <param name="filePath">File path.</param>
-        private void PlaySoundFile(string filePath)
+        /// <param name="loop">If set to <c>true</c> loop.</param>
+        private void PlaySoundFile(string filePath, bool loop)
         {
             // Check for previous player
             if (this.soundPlayer != null)
@@ -184,7 +185,14 @@ namespace GoOffAlarm
             this.soundPlayer = new SoundPlayer(filePath);
 
             // Play the passed file
-            this.soundPlayer.Play();
+            if (loop)
+            {
+                this.soundPlayer.PlayLooping();
+            }
+            else
+            {
+                this.soundPlayer.Play();
+            }
         }
 
         /// <summary>
@@ -275,11 +283,44 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnActiveTimerTick(object sender, EventArgs e)
         {
+            // Set alarm timestamp
+            var alarmTimeSpan = this.leftTimeSpan.Subtract(this.stopwatch.Elapsed);
+
+            if (TimeSpan.Compare(alarmTimeSpan.Add(this.leftTimeSpan), this.leftTimeSpan) < 0)
+            {
+                // Disable timer
+                this.activeTimer.Stop();
+
+                // Change button label to silence
+                this.startStopButton.Text = "&Silence";
+
+                // Focus silence button
+                this.startStopButton.Focus();
+
+                // Play sound file
+                this.PlaySoundFile(this.settingsData.SoundFilePath, this.loopSoundToolStripMenuItem.Checked);
+
+                // Halt flow
+                return;
+            }
+
             // Show elapsed time
             this.elapsedLabel.Text = this.stopwatch.Elapsed.ToString(@"hh\:mm\:ss");
 
             // Show time left
-            this.timeLeftToolStripStatusLabel.Text = this.leftTimeSpan.Subtract(this.stopwatch.Elapsed).ToString(@"hh\:mm\:ss");
+            this.timeLeftToolStripStatusLabel.Text = alarmTimeSpan.ToString(@"hh\:mm\:ss");
+        }
+
+        /// <summary>
+        /// Resets the labels.
+        /// </summary>
+        private void ResetLabels()
+        {
+            // Show elapsed time
+            this.elapsedLabel.Text = "00:00:00";
+
+            // Show time left
+            this.timeLeftToolStripStatusLabel.Text = "00:00:00";
         }
 
         /// <summary>
