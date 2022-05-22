@@ -39,7 +39,7 @@ namespace PublicDomain
         /// Gets or sets the minutes.
         /// </summary>
         /// <value>The minutes.</value>
-        public int Minutes { get; set; } = 20;
+        public decimal Minutes { get; set; } = 20;
 
         /// <summary>
         /// Gets or sets the sound file path.

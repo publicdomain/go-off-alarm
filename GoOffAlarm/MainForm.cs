@@ -52,6 +52,23 @@ namespace GoOffAlarm
         {
             // The InitializeComponent() call is required for Windows Forms designer support.
             this.InitializeComponent();
+
+            /* Settings data */
+
+            // Check for settings file
+            if (!File.Exists(this.settingsDataPath))
+            {
+                // Create new settings file
+                this.SaveSettingsFile(this.settingsDataPath, new SettingsData());
+            }
+
+            // Load settings from disk
+            this.settingsData = this.LoadSettingsFile(this.settingsDataPath);
+
+            // Set values
+            this.alwaysOnTopToolStripMenuItem.Checked = this.settingsData.AlwaysOnTop;
+            this.loopSoundToolStripMenuItem.Checked = this.settingsData.LoopSound;
+            this.minutesNumericUpDown.Value = this.settingsData.Minutes;
         }
 
         /// <summary>
@@ -277,8 +294,29 @@ namespace GoOffAlarm
             // Loop
             this.settingsData.LoopSound = this.loopSoundToolStripMenuItem.Checked;
 
+            // Minutes
+            this.settingsData.Minutes = this.minutesNumericUpDown.Value;
+
             // Save settings data to disk
             this.SaveSettingsFile(this.settingsDataPath, this.settingsData);
+        }
+
+        /// <summary>
+        /// Loads the settings file.
+        /// </summary>
+        /// <returns>The settings file.</returns>
+        /// <param name="settingsFilePath">Settings file path.</param>
+        private SettingsData LoadSettingsFile(string settingsFilePath)
+        {
+            // Use file stream
+            using (FileStream fileStream = File.OpenRead(settingsFilePath))
+            {
+                // Set xml serialzer
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SettingsData));
+
+                // Return populated settings data
+                return xmlSerializer.Deserialize(fileStream) as SettingsData;
+            }
         }
 
         /// <summary>
@@ -304,39 +342,6 @@ namespace GoOffAlarm
             {
                 // Advise user
                 MessageBox.Show($"Error saving settings file.{Environment.NewLine}{Environment.NewLine}Message:{Environment.NewLine}{exception.Message}", "File error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Saves the settings data.
-        /// </summary>
-        private void SaveSettingsData()
-        {
-            // Use stream writer
-            using (StreamWriter streamWriter = new StreamWriter("SettingsData.txt", false))
-            {
-                // Set xml serialzer
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SettingsData));
-
-                // Serialize settings data
-                xmlSerializer.Serialize(streamWriter, this.settingsData);
-            }
-        }
-
-        /// <summary>
-        /// Loads the settings data.
-        /// </summary>
-        /// <returns>The settings data.</returns>
-        private SettingsData LoadSettingsData()
-        {
-            // Use file stream
-            using (FileStream fileStream = File.OpenRead("SettingsData.txt"))
-            {
-                // Set xml serialzer
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SettingsData));
-
-                // Return populated settings data
-                return xmlSerializer.Deserialize(fileStream) as SettingsData;
             }
         }
 
