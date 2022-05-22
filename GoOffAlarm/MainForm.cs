@@ -131,33 +131,50 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnStartStopButtonClick(object sender, EventArgs e)
         {
-            // Check for Star(t) vs Sto(p)
-            if (this.startStopButton.Text.EndsWith("t", StringComparison.InvariantCulture))
+            // Check start/stop/silence
+            switch (this.startStopButton.Text)
             {
-                // Set timespan from minutes
-                this.leftTimeSpan = TimeSpan.FromMinutes((Double)this.minutesNumericUpDown.Value);
+                case "&Start":
 
-                // Restart stopwatch
-                this.stopwatch.Restart();
+                    // Set timespan from minutes
+                    this.leftTimeSpan = TimeSpan.FromMinutes((Double)this.minutesNumericUpDown.Value);
 
-                // Start timer
-                this.activeTimer.Start();
+                    // Restart stopwatch
+                    this.stopwatch.Restart();
 
-                // Change to stop
-                this.startStopButton.Text = "&Stop";
-                this.startStopButton.ForeColor = Color.Red;
-            }
-            else
-            {
-                // Stop stopwatch
-                this.stopwatch.Stop();
+                    // Start timer
+                    this.activeTimer.Start();
 
-                // Stop timer
-                this.activeTimer.Stop();
+                    // Change to stop
+                    this.startStopButton.Text = "&Stop";
+                    this.startStopButton.ForeColor = Color.Red;
 
-                // Reset to start
-                this.startStopButton.Text = "&Start";
-                this.startStopButton.ForeColor = Color.DarkGreen;
+                    break;
+
+                case "&Stop":
+
+                    // Stop stopwatch
+                    this.stopwatch.Stop();
+
+                    // Stop timer
+                    this.activeTimer.Stop();
+
+                    // Reset to start
+                    this.startStopButton.Text = "&Start";
+                    this.startStopButton.ForeColor = Color.DarkGreen;
+
+                    break;
+
+                case "&Silence":
+
+                    // Reset the player
+                    this.ResetSoundPlayer();
+
+                    // Reset to start
+                    this.startStopButton.Text = "&Start";
+                    this.startStopButton.ForeColor = Color.DarkGreen;
+
+                    break;
             }
         }
 
@@ -168,18 +185,8 @@ namespace GoOffAlarm
         /// <param name="loop">If set to <c>true</c> loop.</param>
         private void PlaySoundFile(string filePath, bool loop)
         {
-            // Check for previous player
-            if (this.soundPlayer != null)
-            {
-                // Stop it
-                this.soundPlayer.Stop();
-
-                // Dispose of it
-                this.soundPlayer.Dispose();
-
-                // Reset instance variable
-                this.soundPlayer = null;
-            }
+            // Reset the player
+            this.ResetSoundPlayer();
 
             // Set instance player afresh
             this.soundPlayer = new SoundPlayer(filePath);
@@ -192,6 +199,25 @@ namespace GoOffAlarm
             else
             {
                 this.soundPlayer.Play();
+            }
+        }
+
+        /// <summary>
+        /// Resets the sound player.
+        /// </summary>
+        private void ResetSoundPlayer()
+        {
+            // Check for previous player
+            if (this.soundPlayer != null)
+            {
+                // Stop it
+                this.soundPlayer.Stop();
+
+                // Dispose of it
+                this.soundPlayer.Dispose();
+
+                // Reset instance variable
+                this.soundPlayer = null;
             }
         }
 
@@ -290,6 +316,9 @@ namespace GoOffAlarm
             {
                 // Disable timer
                 this.activeTimer.Stop();
+
+                // Reset labels
+                this.ResetLabels();
 
                 // Change button label to silence
                 this.startStopButton.Text = "&Silence";
