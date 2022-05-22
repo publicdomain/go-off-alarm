@@ -165,7 +165,8 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnOriginalThreadRedditcomToolStripMenuItemClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Open original thread
+            Process.Start("https://www.reddit.com/r/software/comments/uqfsmv/looking_for_a_good_timer_program_that_actually/");
         }
 
         /// <summary>
