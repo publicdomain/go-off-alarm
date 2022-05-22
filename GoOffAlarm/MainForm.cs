@@ -106,7 +106,12 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnSetSoundFileToolStripMenuItemClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Show open file dialog
+            if (this.openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Set sound file path
+                this.settingsData.SoundFilePath = this.openFileDialog.FileName;
+            }
         }
 
         /// <summary>
