@@ -11,6 +11,7 @@ namespace GoOffAlarm
     using System.Drawing;
     using System.IO;
     using System.Media;
+    using System.Reflection;
     using System.Windows.Forms;
     using System.Xml.Serialization;
     using PublicDomain;
@@ -46,12 +47,27 @@ namespace GoOffAlarm
         TimeSpan leftTimeSpan;
 
         /// <summary>
+        /// Gets or sets the associated icon.
+        /// </summary>
+        /// <value>The associated icon.</value>
+        private Icon associatedIcon = null;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:GoOffAlarm.MainForm"/> class.
         /// </summary>
         public MainForm()
         {
             // The InitializeComponent() call is required for Windows Forms designer support.
             this.InitializeComponent();
+
+            /* Set icons */
+
+            // Set associated icon from exe file
+            this.associatedIcon = Icon.ExtractAssociatedIcon(typeof(MainForm).GetTypeInfo().Assembly.Location);
+
+            // Set PublicDomain.is tool strip menu item image
+            this.freeReleasesPublicDomainisToolStripMenuItem.Image = this.associatedIcon.ToBitmap();
+
 
             /* Settings data */
 
@@ -138,7 +154,8 @@ namespace GoOffAlarm
         /// <param name="e">Event arguments.</param>
         private void OnFreeReleasesPublicDomainisToolStripMenuItemClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Open our website
+            Process.Start("https://publicdomain.is");
         }
 
         /// <summary>
