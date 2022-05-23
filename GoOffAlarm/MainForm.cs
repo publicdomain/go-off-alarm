@@ -196,7 +196,7 @@ namespace GoOffAlarm
                 $"Libraries and icons have separate licenses.{Environment.NewLine}{Environment.NewLine}" +
                 $"Alarm time clock icon by videoplasty - Pixabay License{Environment.NewLine}" +
                 $"https://pixabay.com/vectors/alarm-time-clock-alarm-clock-5961342/{Environment.NewLine}{Environment.NewLine}" +
-                $"Siren Noise sound by KevanGC - Public Domain License{Environment.NewLine}" +
+                $"Siren Noise sound by KevanGC - Public Domain dedication{Environment.NewLine}" +
                 $"https://soundbible.com/1577-Siren-Noise.html{Environment.NewLine}{Environment.NewLine}" +
                 $"Reddit icon used according to published brand guidelines{Environment.NewLine}" +
                 $"https://www.redditinc.com/brand{Environment.NewLine}{Environment.NewLine}" +
@@ -223,7 +223,7 @@ namespace GoOffAlarm
             var aboutForm = new AboutForm(
                 $"About {programTitle}",
                 $"{programTitle} {version.Major}.{version.Minor}.{version.Build}",
-                $"Made for: u/supatoedie{ Environment.NewLine}Reddit.com{Environment.NewLine}Day #142, Week #20 @ May 22, 2022",
+                $"Made for: u/supatoedie{ Environment.NewLine}Reddit.com{Environment.NewLine}Day #143, Week #21 @ May 23, 2022",
                 licenseText,
                 this.Icon.ToBitmap())
             {
